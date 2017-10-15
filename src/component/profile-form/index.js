@@ -1,6 +1,5 @@
 import React from 'react';
 import * as utils from '../../lib/utils';
-import RaisedButton from 'material-ui/RaisedButton';
 
 class ProfileForm extends React.Component {
   constructor(props) {
@@ -22,8 +21,8 @@ class ProfileForm extends React.Component {
       this.setState({avatar});
 
       utils.photoToDataUrl(avatar)
-        .then(preview => this.setState({preview}))
-        .catch(console.error);
+      .then(preview => this.setState({preview}))
+      .catch(console.error);
     }
   }
 
@@ -52,7 +51,7 @@ class ProfileForm extends React.Component {
           onChange={this.handleChange}>
         </textarea>
 
-        <RaisedButton label={this.props.buttonText} type="submit" primary={true} />
+        <button type="submit">{this.props.buttonText}</button>
       </form>
     );
   }

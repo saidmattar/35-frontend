@@ -1,5 +1,6 @@
 import React from 'react';
 import * as utils from '../../lib/utils';
+import RaisedButton from 'material-ui/RaisedButton';
 
 class PhotoForm extends React.Component {
   constructor(props) {
@@ -14,23 +15,23 @@ class PhotoForm extends React.Component {
 
   handleChange(e) {
     let {name} = e.target;
-    if (name === 'description') this.setState({description: e.target.value});
-    if (name === 'photo') {
+    if(name === 'description') this.setState({description: e.target.value});
+    if(name === 'photo') {
       let {files} = e.target;
       let photo = files[0];
       this.setState({photo});
 
       utils.photoToDataUrl(photo)
-        .then(preview => this.setState({preview}))
-        .catch(console.error);
+      .then(preview => this.setState({preview}))
+      .catch(console.error);
     }
   }
 
   handleSubmit(e) {
     e.preventDefault();
     this.props.onComplete(this.state)
-      .then(() => this.setState({description: '', preview: '', photo: null}))
-      .then(() => this.props.toggle ? this.props.toggle() : undefined);
+    .then(() => this.setState({description: '', preview: '', photo: null}))
+    .then(() => this.props.toggle ? this.props.toggle() : undefined);
   }
 
   render() {
@@ -54,7 +55,7 @@ class PhotoForm extends React.Component {
           value={this.state.description}
           onChange={this.handleChange}/>
 
-        <button type="submit">{this.props.buttonText}</button>
+        <RaisedButton label={this.props.buttonText} type="submit" />
       </form>
     );
   }
